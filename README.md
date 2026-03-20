@@ -1,7 +1,7 @@
 # EngComp-UNIVESP
 
 ## Descrição
-Este repositório é dedicado ao armazenamento de todo o conteúdo do curso de Engenharia de Computação da UNIVESP. Inclui materiais de aula, projetos, anotações e recursos adicionais.
+Este repositório é dedicado ao armazenamento de todo o conteúdo do curso de Engenharia de Computação da UNIVESP. 
 
 ## Atualizações
 Este repositório está em constante atualização para refletir novos conteúdos e melhorias. Fique atento para as últimas mudanças e adições.
