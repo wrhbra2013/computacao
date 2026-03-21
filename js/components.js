@@ -41,7 +41,7 @@ async function loadHeader() {
         const response = await fetch(basePath + 'components/header.html');
         const html = await response.text();
         headerContainer.innerHTML = html;
-        loadComponents();
+        setTimeout(loadComponents, 0);
     } catch (e) {
         console.error('Erro ao carregar header:', e);
     }
