@@ -5,26 +5,26 @@
 }
 
 :root {
-    --primary: #1a237e;
-    --primary-light: #3949ab;
-    --primary-dark: #0d1642;
-    --secondary: #7c4dff;
-    --accent: #b388ff;
-    --light: #e8eaf6;
+    --primary: #00897b;
+    --primary-light: #26a69a;
+    --primary-dark: #00695c;
+    --secondary: #ff7043;
+    --accent: #80cbc4;
+    --light: #e0f2f1;
     --white: #ffffff;
     --text: #263238;
     --text-light: #546e7a;
-    --border: #c5cae9;
+    --border: #b2dfdb;
     --success: #00c853;
     --warning: #ffc107;
     --info: #00b8d4;
     --card-bg: #fafafa;
     --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
     --gradient-card: linear-gradient(180deg, var(--white) 0%, var(--light) 100%);
-    --shadow-sm: 0 2px 8px rgba(26, 35, 126, 0.08);
-    --shadow-md: 0 4px 16px rgba(26, 35, 126, 0.12);
-    --shadow-lg: 0 8px 32px rgba(26, 35, 126, 0.16);
-    --shadow-hover: 0 12px 40px rgba(26, 35, 126, 0.2);
+    --shadow-sm: 0 2px 8px rgba(0, 137, 123, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 137, 123, 0.12);
+    --shadow-lg: 0 8px 32px rgba(0, 137, 123, 0.16);
+    --shadow-hover: 0 12px 40px rgba(0, 137, 123, 0.2);
     --radius-sm: 6px;
     --radius-md: 10px;
     --radius-lg: 16px;

@@ -63,4 +63,12 @@ async function loadFooter() {
 document.addEventListener('DOMContentLoaded', () => {
     loadHeader();
     loadFooter();
+    
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menuCheckbox = document.getElementById('menu-checkbox');
+    if (menuToggle && menuCheckbox) {
+        menuToggle.addEventListener('click', () => {
+            menuCheckbox.checked = !menuCheckbox.checked;
+        });
+    }
 });
