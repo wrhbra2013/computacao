@@ -96,7 +96,6 @@ header p {
 /* Navigation */
 nav {
     background: var(--white);
-    padding: 0.75rem 1rem;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -105,16 +104,21 @@ nav {
 
 nav ul {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
     list-style: none;
-    max-width: 1200px;
-    margin: 0 auto;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    scrollbar-width: none;
+}
+
+nav ul::-webkit-scrollbar {
+    display: none;
 }
 
 nav li {
-    display: inline-block;
+    flex-shrink: 0;
 }
 
 nav a {
@@ -125,6 +129,7 @@ nav a {
     font-size: 0.875rem;
     font-weight: 500;
     white-space: nowrap;
+    display: block;
 }
 
 nav a:hover {
@@ -134,6 +139,28 @@ nav a:hover {
 nav a.active {
     background: var(--primary);
     color: var(--white);
+}
+
+/* Mobile Toggle */
+.menu-toggle-check {
+    display: none;
+}
+
+.menu-toggle-label {
+    display: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-toggle-label::before {
+    content: '⋮';
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: bold;
 }
 
 /* Main Content */
@@ -355,23 +382,34 @@ footer p {
 }
 
 /* Mobile */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    .menu-toggle-label {
+        display: block;
+    }
+    
     nav {
-        padding: 0.5rem;
+        position: relative;
     }
     
     nav ul {
-        justify-content: flex-start;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 0.25rem;
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-top: 1px solid var(--border);
+        padding: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     
-    nav a {
-        white-space: nowrap;
-        font-size: 0.75rem;
-        padding: 0.4rem 0.5rem;
+    .menu-toggle-check:checked + .menu-toggle-label + ul {
+        display: flex;
+    }
+    
+    .menu-toggle-check:checked + .menu-toggle-label::before {
+        content: '✕';
     }
     
     .dashboard-grid {
