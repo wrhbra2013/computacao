@@ -16,12 +16,20 @@ function loadComponents() {
     
     links.forEach(link => {
         const href = link.getAttribute('href');
-        if (href.split('/').pop() === currentPage) {
+        
+        // Marca link ativo
+        const linkPage = href.split('/').pop();
+        if (linkPage === currentPage) {
             link.classList.add('active');
         }
         
-        if (isInPages && href.startsWith('pages/')) {
-            link.setAttribute('href', '../' + href);
+        // Corrige caminhos para páginas dentro de /pages/
+        if (isInPages) {
+            if (href === 'index.html') {
+                link.setAttribute('href', '../index.html');
+            } else if (!href.startsWith('http') && !href.startsWith('../')) {
+                link.setAttribute('href', '../' + href);
+            }
         }
     });
 }
