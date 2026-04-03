@@ -5,910 +5,375 @@
 }
 
 :root {
-    --primary: #00897b;
-    --primary-light: #26a69a;
-    --primary-dark: #00695c;
-    --secondary: #ff7043;
-    --accent: #80cbc4;
-    --light: #e0f2f1;
+    --primary: #0891b2;
+    --primary-dark: #0e7490;
+    --secondary: #6366f1;
+    --light: #ecfeff;
     --white: #ffffff;
-    --text: #263238;
-    --text-light: #546e7a;
-    --border: #b2dfdb;
-    --success: #00c853;
-    --warning: #ffc107;
-    --info: #00b8d4;
-    --card-bg: #fafafa;
-    --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    --gradient-card: linear-gradient(180deg, var(--white) 0%, var(--light) 100%);
-    --shadow-sm: 0 2px 8px rgba(0, 137, 123, 0.08);
-    --shadow-md: 0 4px 16px rgba(0, 137, 123, 0.12);
-    --shadow-lg: 0 8px 32px rgba(0, 137, 123, 0.16);
-    --shadow-hover: 0 12px 40px rgba(0, 137, 123, 0.2);
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 16px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --text: #1e293b;
+    --text-light: #64748b;
+    --border: #cbd5e1;
+    --radius: 8px;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(180deg, #f5f7fa 0%, #e4e8f0 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--light);
     color: var(--text);
     line-height: 1.6;
-    min-height: 100vh;
 }
 
 header {
-    background: var(--gradient-primary);
+    background: var(--primary);
     color: var(--white);
-    padding: 2.5rem 2rem;
+    padding: 2rem;
     text-align: center;
-    box-shadow: var(--shadow-lg);
-    position: relative;
-    overflow: hidden;
-}
-
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.3;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    position: relative;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
 }
 
 header p {
-    font-size: 1.1rem;
-    opacity: 0.95;
-    position: relative;
-    font-weight: 300;
+    opacity: 0.9;
+}
+
+.search-bar {
+    background: var(--white);
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar form {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    gap: 0.5rem;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+#search-results {
+    display: none;
+    margin-bottom: 1.5rem;
+}
+
+#search-results.show {
+    display: block;
+}
+
+#search-results .result-item {
+    background: var(--white);
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin-bottom: 0.5rem;
+    border: 1px solid var(--border);
+}
+
+#search-results .result-item a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+#search-results .result-item a:hover {
+    text-decoration: underline;
+}
+
+#search-results .result-item p {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+.search-bar button {
+    padding: 0.6rem 1rem;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.search-bar button:hover {
+    background: var(--primary-dark);
 }
 
 nav {
     background: var(--white);
-    padding: 1rem 2rem;
+    padding: 0.75rem 1rem;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: var(--shadow-sm);
-    border-bottom: 2px solid var(--border);
-}
-
-.menu-checkbox {
-    display: none;
-}
-
-nav ul {
+    border-bottom: 1px solid var(--border);
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 0.75rem;
-    list-style: none;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.menu-toggle {
-    display: none;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 nav a {
     color: var(--primary);
     text-decoration: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: var(--radius-md);
-    transition: var(--transition);
-    font-weight: 600;
-    font-size: 0.95rem;
-    position: relative;
-    border: 2px solid transparent;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 500;
 }
 
 nav a:hover {
     background: var(--light);
-    color: var(--primary-dark);
-    transform: translateY(-2px);
 }
 
 nav a.active {
-    background: var(--gradient-primary);
-    color: var(--white);
-    box-shadow: var(--shadow-sm);
-}
-
-main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
-
-.semester-header {
-    background: var(--gradient-primary);
-    color: var(--white);
-    padding: 2rem;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    margin-bottom: 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.semester-header::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 300px;
-    height: 300px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-}
-
-.semester-header h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    position: relative;
-}
-
-.semester-header .total-hours {
-    font-size: 1rem;
-    opacity: 0.9;
-    margin-top: 0.5rem;
-    position: relative;
-    font-weight: 400;
-}
-
-.disciplines-container {
-    background: var(--white);
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    overflow: hidden;
-    padding: 1.5rem;
-}
-
-.discipline-card {
-    margin-bottom: 1.5rem;
-    background: var(--gradient-card);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
-    border: 1px solid var(--border);
-    transition: var(--transition);
-    position: relative;
-}
-
-.discipline-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--gradient-primary);
-    opacity: 0;
-    transition: var(--transition);
-}
-
-.discipline-card:hover {
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-4px);
-}
-
-.discipline-card:hover::before {
-    opacity: 1;
-}
-
-.discipline-card:last-child {
-    margin-bottom: 0;
-}
-
-.discipline-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
-    border-bottom: 1px solid var(--border);
-}
-
-.discipline-title {
-    font-size: 1.2rem;
-    color: var(--primary-dark);
-    font-weight: 700;
-    flex: 1;
-    line-height: 1.4;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.discipline-meta {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.discipline-code {
     background: var(--primary);
     color: var(--white);
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
 }
 
-.discipline-hours {
-    background: var(--secondary);
-    color: var(--white);
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-}
-
-.discipline-content {
-    padding: 0 1.5rem 1rem 1.5rem;
-}
-
-.saiba-mais-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: var(--gradient-primary);
-    color: var(--white);
-    text-decoration: none;
-    padding: 0.85rem 1.75rem;
-    border-radius: 30px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    transition: var(--transition);
-    margin: 1rem 1.5rem 0 1.5rem;
-    justify-content: center;
-    box-shadow: var(--shadow-sm);
-    position: relative;
-    overflow: hidden;
-}
-
-.saiba-mais-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-    transition: left 0.5s;
-}
-
-.saiba-mais-btn:hover::before {
-    left: 100%;
-}
-
-.saiba-mais-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-    background: var(--primary);
-}
-
-.saiba-mais-btn svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-}
-
-.saiba-mais-btn .btn-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-}
-
-.discipline-section {
-    padding: 1.25rem;
-    margin-top: 1rem;
-    background: var(--light);
-    border-radius: var(--radius-md);
-    border-left: 4px solid var(--accent);
-    transition: var(--transition);
-}
-
-.discipline-section:hover {
-    background: var(--white);
-    box-shadow: var(--shadow-sm);
-}
-
-.discipline-section.objectives-section {
-    background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
-    border-left-color: var(--info);
-}
-
-.discipline-section.ementa-section {
-    background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
-    border-left-color: var(--warning);
-}
-
-.discipline-section.bibliography-section {
-    background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
-    border-left-color: var(--success);
-}
-
-.discipline-section h4 {
-    color: var(--primary-dark);
-    font-size: 0.85rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid rgba(0,0,0,0.1);
-}
-
-.objectives, .ementa {
-    color: var(--text);
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: #37474f;
-}
-
-.objectives {
-    background: rgba(255,255,255,0.8);
-    padding: 1rem;
-    border-radius: var(--radius-sm);
-    margin-bottom: 0.5rem;
-}
-
-.ementa {
-    background: rgba(255,255,255,0.8);
-    padding: 1rem;
-    border-radius: var(--radius-sm);
-}
-
-.bibliography {
-    background: rgba(255,255,255,0.8);
-    padding: 1rem;
-    border-radius: var(--radius-sm);
-    margin-top: 0.75rem;
-}
-
-.bibliography h4 {
-    color: var(--primary);
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 0.6rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--success);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.bibliography h4::before {
+.menu-checkbox, .menu-toggle {
     display: none;
 }
 
-.bibliography ul {
-    list-style: none;
-    font-size: 0.9rem;
+main {
+    max-width: 900px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
 }
 
-.bibliography li {
-    padding: 0.7rem 0;
-    color: #424242;
-    line-height: 1.6;
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.bibliography li:last-child {
-    border-bottom: none;
-}
-
-.bibliography li::before {
-    content: "📎";
-    position: absolute;
-    left: 0;
-    font-size: 0.8rem;
-}
-
-.base-bibliography {
-    border-left: 4px solid var(--success);
-}
-
-.complement-bibliography {
-    border-left: 4px solid var(--warning);
-}
-
-.complement-bibliography h4 {
-    border-bottom-color: var(--warning);
-}
-
-footer {
-    background: var(--primary-dark);
+.page-header {
+    background: var(--primary);
     color: var(--white);
-    text-align: center;
-    padding: 2.5rem;
-    margin-top: 3rem;
+    padding: 1.5rem;
+    border-radius: var(--radius) var(--radius) 0 0;
 }
 
-footer p {
+.page-header h2 {
+    font-size: 1.5rem;
+}
+
+.page-header p {
     opacity: 0.9;
+    margin-top: 0.25rem;
 }
 
-footer p:first-child {
-    font-weight: 600;
+.content-box {
+    background: var(--white);
+    border-radius: 0 0 var(--radius) var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+}
+
+.content-box h3 {
+    color: var(--primary);
     font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.content-box h3 .tag {
+    font-size: 0.7rem;
+    background: var(--primary);
+    color: var(--white);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.content-box h3 .hours {
+    font-size: 0.7rem;
+    background: var(--secondary);
+    color: var(--white);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.content-box p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.content-box a.btn {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.content-box a.btn:hover {
+    background: var(--primary-dark);
+}
+
+.content-box hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1rem 0;
+}
+
+.content-box ul {
+    margin-left: 1.25rem;
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+.content-box li {
     margin-bottom: 0.5rem;
 }
 
-.back-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: var(--gradient-primary);
-    color: var(--white);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: var(--shadow-lg);
-    font-size: 1.5rem;
-    transition: var(--transition);
-    z-index: 99;
-}
-
-.back-to-top:hover {
-    transform: translateY(-4px) scale(1.1);
-    box-shadow: var(--shadow-hover);
-    color: var(--white);
+.section-title {
+    color: var(--primary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 1rem 0 0.5rem;
+    font-weight: 600;
 }
 
 .dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    padding: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
 }
 
 .dashboard-card {
-    background: var(--gradient-card);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    text-align: center;
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
+    background: var(--white);
+    padding: 1.25rem;
+    border-radius: var(--radius);
     text-decoration: none;
     color: inherit;
     border: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-}
-
-.dashboard-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-primary);
-    transform: scaleX(0);
-    transition: var(--transition);
+    transition: 0.2s;
 }
 
 .dashboard-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-hover);
-}
-
-.dashboard-card:hover::before {
-    transform: scaleX(1);
+    border-color: var(--primary);
 }
 
 .dashboard-card h3 {
     color: var(--primary);
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
 }
 
 .dashboard-card p {
     color: var(--text-light);
-    font-size: 0.95rem;
-}
-
-.dashboard-card .semester-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    display: block;
+    font-size: 0.85rem;
 }
 
 .intro {
     background: var(--white);
-    padding: 2rem;
-    border-radius: var(--radius-lg);
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow-sm);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
     border: 1px solid var(--border);
 }
 
 .intro h2 {
     color: var(--primary);
-    margin-bottom: 1rem;
-    font-weight: 700;
+    margin-bottom: 0.75rem;
 }
 
-.intro ul {
-    list-style-position: inside;
+.intro p {
     color: var(--text-light);
-}
-
-.intro li {
-    margin: 0.5rem 0;
+    font-size: 0.9rem;
 }
 
 .course-info {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
-    padding: 1.5rem;
-    background: var(--gradient-card);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
 }
 
 .course-info div {
+    background: var(--light);
+    padding: 0.75rem;
+    border-radius: var(--radius);
     text-align: center;
-    padding: 1rem;
-    background: var(--white);
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-}
-
-.course-info div:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
 }
 
 .course-info strong {
     display: block;
     color: var(--primary);
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.25rem;
 }
 
 .course-info span {
     color: var(--text-light);
-    font-size: 0.9rem;
-    margin-top: 0.25rem;
-    display: block;
+    font-size: 0.75rem;
 }
 
-@media (max-width: 768px) {
-    header {
-        padding: 1.5rem 1rem;
-    }
-    
+footer {
+    background: var(--text);
+    color: var(--white);
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+footer p {
+    opacity: 0.8;
+    font-size: 0.85rem;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--primary);
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+h2.section-title {
+    color: var(--text);
+    margin: 1.5rem 0 1rem;
+}
+
+@media (max-width: 600px) {
     nav {
-        padding: 0.5rem;
-        position: relative;
-        width: 100%;
-    }
-    
-    .menu-toggle {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 24px;
-        cursor: pointer;
-        padding: 5px;
-        z-index: 100;
-        position: absolute;
-        right: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    
-    .menu-toggle span {
-        display: block;
-        width: 100%;
-        height: 3px;
-        background: var(--primary);
-        border-radius: 2px;
-        transition: var(--transition);
-    }
-    
-    .menu-checkbox {
-        display: none;
-    }
-    
-    .menu-checkbox:checked ~ .menu-toggle span:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
-    }
-    
-    .menu-checkbox:checked ~ .menu-toggle span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .menu-checkbox:checked ~ .menu-toggle span:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
-    }
-    
-    nav ul {
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.25rem;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--white);
-        padding: 0.5rem;
-        box-shadow: var(--shadow-md);
-        border-top: 2px solid var(--primary);
-    }
-    
-    .menu-checkbox:checked ~ ul {
-        display: flex;
-    }
-    
-    nav li {
-        display: block;
+        justify-content: flex-start;
+        overflow-x: auto;
     }
     
     nav a {
-        display: block;
-        text-align: center;
-        padding: 0.75rem 1rem;
-        font-size: 0.9rem;
-        width: 100%;
-        border-radius: var(--radius-sm);
-    }
-    
-    main {
-        margin: 1rem auto;
-        padding: 0 0.75rem;
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .semester-header {
-        padding: 1.25rem;
-        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    }
-    
-    .semester-header h2 {
-        font-size: 1.4rem;
-    }
-    
-    .semester-header .total-hours {
-        font-size: 0.85rem;
-    }
-    
-    .disciplines-container {
-        padding: 0.75rem;
-        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-    }
-    
-    .discipline-card {
-        padding: 1rem;
-        margin-bottom: 1.25rem;
-        width: 100%;
-        border-radius: var(--radius-md);
-    }
-    
-    .discipline-header {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-        padding: 1rem;
-        width: 100%;
-    }
-    
-    .discipline-title {
-        font-size: 1.05rem;
-        width: 100%;
-    }
-    
-    .discipline-meta {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-    }
-    
-    .discipline-code, 
-    .discipline-hours {
-        font-size: 0.7rem;
-        display: inline-block;
-        padding: 0.3rem 0.8rem;
-    }
-    
-    .discipline-content {
-        padding: 0;
-    }
-    
-    .saiba-mais-btn {
-        display: flex;
-        width: calc(100% - 2rem);
-        justify-content: center;
-        padding: 0.85rem 1rem;
-        font-size: 0.9rem;
-        margin: 1rem 1rem 0 1rem;
-        border-radius: 25px;
-    }
-    
-    .discipline-section {
-        margin-top: 1rem;
-        padding: 1rem;
-        width: auto;
-        border-radius: var(--radius-sm);
-    }
-    
-    .discipline-section h4 {
+        white-space: nowrap;
         font-size: 0.8rem;
-        width: 100%;
-    }
-    
-    .objectives, .ementa {
-        font-size: 0.9rem;
-        width: 100%;
-        padding: 0.85rem;
-    }
-    
-    .bibliography {
-        width: 100%;
-        padding: 0.85rem;
-    }
-    
-    .bibliography h4 {
-        font-size: 0.75rem;
-    }
-    
-    .bibliography ul {
-        font-size: 0.85rem;
-    }
-    
-    .bibliography li {
-        padding-left: 1.25rem;
-        padding: 0.6rem 0 0.6rem 1.25rem;
-    }
-    
-    .bibliography li::before {
-        display: none;
     }
     
     .dashboard-grid {
-        padding: 1rem;
-        gap: 1rem;
-    }
-    
-    .dashboard-card {
-        padding: 1.5rem;
-        margin-bottom: 0;
-        width: 100%;
-        border-radius: var(--radius-md);
-    }
-    
-    .dashboard-card .semester-icon {
-        font-size: 2.5rem;
-    }
-    
-    .intro {
-        padding: 1.5rem;
-        border-radius: var(--radius-md);
-    }
-    
-    .intro h2 {
-        font-size: 1.3rem;
-    }
-    
-    .course-info {
         grid-template-columns: 1fr;
-        gap: 0.75rem;
-        padding: 1rem;
-    }
-    
-    .course-info div {
-        text-align: left;
-        padding: 1rem;
-        border-radius: var(--radius-sm);
-        border-bottom: 1px solid var(--border);
-    }
-    
-    .course-info div:last-child {
-        border-bottom: none;
-    }
-    
-    .course-info strong {
-        font-size: 1.3rem;
-    }
-    
-    footer {
-        padding: 2rem 1rem;
-    }
-    
-    .back-to-top {
-        bottom: 1.5rem;
-        right: 1.5rem;
-        width: 45px;
-        height: 45px;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.3rem;
-    }
-    
-    .semester-header h2 {
-        font-size: 1.2rem;
-    }
-    
-    .discipline-title {
-        font-size: 0.95rem;
-    }
-    
-    .discipline-card {
-        padding: 0.75rem;
-        margin-bottom: 1rem;
-        border-radius: var(--radius-sm);
-    }
-    
-    .discipline-header {
-        padding: 0.75rem;
-    }
-    
-    .discipline-section {
-        margin-top: 0.75rem;
-        padding: 0.85rem;
-    }
-    
-    .objectives, .ementa {
-        font-size: 0.85rem;
-        padding: 0.75rem;
-    }
-    
-    .bibliography li {
-        font-size: 0.8rem;
-    }
-    
-    .course-info {
-        grid-template-columns: 1fr;
-    }
-    
-    .intro {
-        padding: 1rem;
-    }
-    
-    .saiba-mais-btn {
-        padding: 0.75rem 1rem;
-        font-size: 0.85rem;
     }
 }

@@ -2,14 +2,19 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engenharia da Computação - UNIVESP</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="header-container"></div>
     
+    <div class="search-bar">
+        <input type="text" id="site-search" placeholder="Buscar no site..." oninput="filterContent()">
+    </div>
+    
     <main>
+        <div id="search-results"></div>
         <div class="intro">
             <h2>Bacharelado em Engenharia da Computação</h2>
             <p>O curso de Engenharia da Computação da UNIVESP forma profissionais capazes de entender, modelar e resolver problemas, projetando sistemas computacionais em hardware e software para solucioná-los, como no caso de sistemas para Internet das Coisas.</p>
@@ -17,7 +22,7 @@
             <div class="course-info">
                 <div>
                     <strong>4.400h</strong>
-                    <span>Carga Horária Total</span>
+                    <span>Carga Horária</span>
                 </div>
                 <div>
                     <strong>10</strong>
@@ -25,7 +30,7 @@
                 </div>
                 <div>
                     <strong>400h</strong>
-                    <span>Atividades Práticas</span>
+                    <span>Práticas</span>
                 </div>
                 <div>
                     <strong>80h</strong>
@@ -33,11 +38,10 @@
                 </div>
             </div>
             
-            <h3 style="margin-top: 1.5rem; color: var(--primary);">Perfil do Egresso</h3>
-            <p style="margin-top: 0.5rem; color: var(--text-light);">Os profissionais formados devem estar aptos a trabalharem com especificação, modelagem e desenvolvimento de sistemas com hardware e software para solucionar problemas, tendo habilidades para compreender e projetar a interface entre estas camadas, como no caso da internet das coisas. Este profissional é demandado por empresas, setor público, terceiro setor, e pode também desenvolver suas próprias iniciativas empreendedoras.</p>
+            <p style="margin-top:1rem;color:var(--text-light);font-size:0.9rem;">Os profissionais formados devem estar aptos a trabalharem com especificação, modelagem e desenvolvimento de sistemas com hardware e software para solucionar problemas, tendo habilidades para compreender e projetar a interface entre estas camadas.</p>
         </div>
         
-        <h2 style="color: var(--primary); margin-bottom: 1rem;">Selecione o Semestre</h2>
+        <h2 class="section-title">Semestres</h2>
         
         <div class="dashboard-grid">
             <a href="pages/semestre1.html" class="dashboard-card">
@@ -46,39 +50,52 @@
             </a>
             <a href="pages/semestre2.html" class="dashboard-card">
                 <h3>2º Semestre</h3>
-                <p>400h - Fundamentos de Programação</p>
+                <p>400h - Fundamentos</p>
             </a>
             <a href="pages/semestre3.html" class="dashboard-card">
                 <h3>3º Semestre</h3>
-                <p>400h - Estruturas e Sistemas</p>
+                <p>400h - Estruturas</p>
             </a>
             <a href="pages/semestre4.html" class="dashboard-card">
                 <h3>4º Semestre</h3>
-                <p>400h - Hardware e Projeto</p>
+                <p>400h - Hardware</p>
             </a>
             <a href="pages/semestre5.html" class="dashboard-card">
                 <h3>5º Semestre</h3>
-                <p>400h - Infraestrutura e Web</p>
+                <p>400h - Web</p>
             </a>
             <a href="pages/semestre6.html" class="dashboard-card">
                 <h3>6º Semestre</h3>
-                <p>400h - Sistemas e Dispositivos</p>
+                <p>400h - Sistemas</p>
             </a>
             <a href="pages/semestre7.html" class="dashboard-card">
                 <h3>7º Semestre</h3>
-                <p>400h - Controle e Automação</p>
+                <p>400h - Automação</p>
             </a>
             <a href="pages/semestre8.html" class="dashboard-card">
                 <h3>8º Semestre</h3>
-                <p>400h - Compiladores e Sociedade</p>
+                <p>400h - Compiladores</p>
             </a>
             <a href="pages/semestre9.html" class="dashboard-card">
                 <h3>9º Semestre</h3>
-                <p>400h - Eletivas e TCC</p>
+                <p>400h - Eletivas</p>
             </a>
             <a href="pages/semestre10.html" class="dashboard-card">
                 <h3>10º Semestre</h3>
                 <p>400h - Conclusão</p>
+            </a>
+        </div>
+
+        <h2 class="section-title">Projetos</h2>
+        
+        <div class="dashboard-grid">
+            <a href="pages/estagio.html" class="dashboard-card">
+                <h3>Estágio</h3>
+                <p>Amor Animal Marília</p>
+            </a>
+            <a href="pages/projetos.html" class="dashboard-card">
+                <h3>+Projetos</h3>
+                <p>Outros projetos</p>
             </a>
         </div>
     </main>
@@ -87,5 +104,123 @@
     
     <a href="#" class="back-to-top">↑</a>
     <script src="js/components.js"></script>
+    <script>
+    const siteContent = [
+        // Semestres
+        { title: "1º Semestre", desc: "Pensamento Computacional, Ética, Matemática Básica, Inglês, Leitura e Produção de Textos, Projetos e Métodos", url: "pages/semestre1.html" },
+        { title: "2º Semestre", desc: "Algoritmos e Programação Python, Cálculo I, Introdução a Conceitos de Computação, Internet e Web, Matemática Discreta", url: "pages/semestre2.html" },
+        { title: "3º Semestre", desc: "Estruturas de Dados, Sistemas Computacionais, Estatística, Programação Orientada a Objetos, POO", url: "pages/semestre3.html" },
+        { title: "4º Semestre", desc: "Banco de Dados, Cálculo II, Circuitos Digitais, Física do Movimento, Projeto Integrador I", url: "pages/semestre4.html" },
+        { title: "5º Semestre", desc: "Engenharia de Software, Sistemas Embarcados, Geometria Analítica, Álgebra Linear, Protocolos IoT, Redes", url: "pages/semestre5.html" },
+        { title: "6º Semestre", desc: "Infraestrutura, Docker, Nuvem, Desenvolvimento Web, Interface Humano-Computador, IHC, Angular, React", url: "pages/semestre6.html" },
+        { title: "7º Semestre", desc: "Mecânica dos Sólidos, Análise de Algoritmos, Dispositivos Móveis, Android, Kotlin, Processamento Digital de Sinais", url: "pages/semestre7.html" },
+        { title: "8º Semestre", desc: "Controle e Automação, PID, Química Tecnológica, Computação Escalável, High Performance, Big Data, MapReduce", url: "pages/semestre8.html" },
+        { title: "9º Semestre", desc: "Eletiva I, II, Impactos da Computação na Sociedade, Compiladores, SOCI, TCC", url: "pages/semestre9.html" },
+        { title: "10º Semestre", desc: "Cidades Inteligentes, Smart City, Eletiva III, IV, Legislação, Responsabilidade Profissional, LGPD, TCC", url: "pages/semestre10.html" },
+        
+        // Disciplinas
+        { title: "Pensamento Computacional", desc: "COM100 - Decomposição, Padrões, Abstração, Algoritmo", url: "pages/semestre1.html" },
+        { title: "Ética, Cidadania e Sociedade", desc: "SOC100 - Fundamentos filosóficos, ética profissional", url: "pages/semestre1.html" },
+        { title: "Leitura e Produção de Textos", desc: "LET110 - Coesão, coerência,textos acadêmicos", url: "pages/semestre1.html" },
+        { title: "Matemática Básica", desc: "MMB002 - Conjuntos numéricos, razões, proporções", url: "pages/semestre1.html" },
+        { title: "Inglês", desc: "LET100 - Habilidades linguísticas nível elementar", url: "pages/semestre1.html" },
+        { title: "Projetos e Métodos", desc: "INT100 - Metodologia Científica, pesquisa", url: "pages/semestre1.html" },
+        
+        { title: "Algoritmos e Programação I", desc: "COM110 - Python, variáveis, listas, funções", url: "pages/semestre2.html" },
+        { title: "Cálculo I", desc: "MCA001 - Limite, derivada, integral", url: "pages/semestre2.html" },
+        { title: "Introdução a Conceitos de Computação", desc: "COM140 - Sistemas de numeração, álgebra booleana", url: "pages/semestre2.html" },
+        { title: "Algoritmos e Programação II", desc: "COM120 - Pilhas, filas, árvores, recursão", url: "pages/semestre2.html" },
+        { title: "Fundamentos de Internet e Web", desc: "COM130 - HTML, CSS, hipertexto", url: "pages/semestre2.html" },
+        { title: "Matemática Discreta", desc: "COM150 - Provas, indução, grafos", url: "pages/semestre2.html" },
+        
+        { title: "Estruturas de Dados", desc: "EID001 - Pilhas, filas, listas, árvores, grafos", url: "pages/semestre3.html" },
+        { title: "Sistemas Computacionais", desc: "COM210 - Arquitetura, sistemas operacionais, threads", url: "pages/semestre3.html" },
+        { title: "Estatística e Probabilidade", desc: "MEP001 - Distribuição, variância, probabilidade", url: "pages/semestre3.html" },
+        { title: "Programação Orientada a Objetos", desc: "EEP101 - Classes, herança, polimorfismo, Java", url: "pages/semestre3.html" },
+        
+        { title: "Banco de Dados", desc: "COM300 - SQL, modelagem ER, NoSQL, ORM", url: "pages/semestre4.html" },
+        { title: "Cálculo II", desc: "MCA002 - Funções múltiplas variáveis, integrais", url: "pages/semestre4.html" },
+        { title: "Circuitos Digitais", desc: "ELE300 - Portas lógicas, flip-flops, HDL, VHDL", url: "pages/semestre4.html" },
+        { title: "Física do Movimento", desc: "FIS300 - Mecânica, cinemática, forças, energia", url: "pages/semestre4.html" },
+        
+        { title: "Engenharia de Software", desc: "EES001 - Requisitos, testes, agile, scrum", url: "pages/semestre5.html" },
+        { title: "Sistemas Embarcados", desc: "COM370 - Sensores, IoT, microcontroladores", url: "pages/semestre5.html" },
+        { title: "Álgebra Linear", desc: "MGA001 - Vetores, matrizes, autovalores", url: "pages/semestre5.html" },
+        { title: "Protocolos IoT", desc: "COM380 - MQTT, CoAP, Bluetooth, ZigBee, LoRa", url: "pages/semestre5.html" },
+        
+        { title: "Infraestrutura para Software", desc: "COM310 - TCP/IP, VMs, Docker, OpenShift", url: "pages/semestre6.html" },
+        { title: "Plataforma de Dados", desc: "COM420 - AWS, Azure, IoT, nuvem", url: "pages/semestre6.html" },
+        { title: "Desenvolvimento Web", desc: "COM320 - MVC, Angular, React, Vue.js", url: "pages/semestre6.html" },
+        { title: "Interface Humano-Computador", desc: "COM430 - IHC, acessibilidade, UX, DOM", url: "pages/semestre6.html" },
+        
+        { title: "Análise de Algoritmos", desc: "EEM002 - Algoritmos gulosos, programação dinâmica, NP", url: "pages/semestre7.html" },
+        { title: "Dispositivos Móveis", desc: "COM450 - Android, Kotlin, app nativo", url: "pages/semestre7.html" },
+        { title: "Processamento Digital de Sinais", desc: "COM570 - Fourier, FFT, filtros digitais", url: "pages/semestre7.html" },
+        
+        { title: "Controle e Automação", desc: "EEA001 - PID, Bode, Nyquist, malha fechada", url: "pages/semestre8.html" },
+        { title: "Computação Escalável", desc: "COM460 - High Performance, HPC, Big Data", url: "pages/semestre8.html" },
+        
+        { title: "Impactos da Computação", desc: "COM500 - Ética, privacidade, segurança digital", url: "pages/semestre9.html" },
+        { title: "Compiladores", desc: "COM590 - Análise léxica, sintática, geração código", url: "pages/semestre9.html" },
+        
+        { title: "Cidades Inteligentes", desc: "ADM400 - Smart City, IoT, dados abertos", url: "pages/semestre10.html" },
+        { title: "Legislação Profissional", desc: "ADM300 - LGPD, direitos autorais, patentes", url: "pages/semestre10.html" },
+        { title: "TCC", desc: "Trabalho de Conclusão de Curso monografia", url: "pages/semestre10.html" },
+        
+        // Projetos
+        { title: "Estágio - Amor Animal Marília", desc: "ONG proteção animal Marília-SP, sistema gestão adoção", url: "pages/estagio.html" },
+        { title: "Projetos - Crebortoli", desc: "Site institucional empresarial", url: "pages/projetos.html" },
+        { title: "Projetos Dinâmicos", desc: "Projetos web interativos demonstrações", url: "pages/projetos.html" },
+        
+        // Termos gerais
+        { title: "Engenharia Computação UNIVESP", desc: "Curso Bacharelado 4400h 10 semestres distância", url: "index.html" },
+        { title: "UNIVESP", desc: "Universidade Virtual Estado São Paulo EaD", url: "index.html" },
+        { title: "Python", desc: "Linguagem programação semestre 2 3", url: "pages/semestre2.html" },
+        { title: "Java", desc: "Programação orientada a objetos", url: "pages/semestre3.html" },
+        { title: "HTML CSS", desc: "Fundamentos web desenvolvimento", url: "pages/semestre2.html" },
+        { title: "SQL", desc: "Banco de dados queries", url: "pages/semestre4.html" },
+        { title: "Docker", desc: "Container virtualização nuvem", url: "pages/semestre6.html" },
+        { title: "IoT", desc: "Internet das Coisas sensores", url: "pages/semestre5.html" },
+        { title: "Machine Learning", desc: "Aprendizagem máquina IA", url: "pages/semestre7.html" },
+        { title: "Git", desc: "Controle versão versionamento", url: "pages/semestre2.html" },
+        
+        // Projetos
+        { title: "Amor Animal Marília", desc: "ONG proteção animal Marília-SP sistema adoção voluntários", url: "pages/estagio.html" },
+        { title: "Amor Animal", desc: "ONG resgate tratamento castração animais abandonados", url: "pages/estagio.html" },
+        { title: "Estágio Supervisionado", desc: "Atividades prática curso engenharia computação", url: "pages/estagio.html" },
+        { title: "Sistema Gestão ONG", desc: "Cadastro animais controle adoção doações", url: "pages/estagio.html" },
+        { title: "https://amoranimalmarilia.com.br", desc: "Site oficial ONG Amor Animal Marília", url: "pages/estagio.html" },
+        { title: "Crebortoli", desc: "Site institucional empresa serviços portfólio", url: "pages/projetos.html" },
+        { title: "https://crebortoli.com.br", desc: "Site Crebortoli", url: "pages/projetos.html" },
+        { title: "Projetos Dinâmicos", desc: "Demonstrações web interativas APIs animações", url: "pages/projetos.html" },
+        { title: "https://projetosdinamicos.com.br", desc: "Galeria projetos desenvolvimento web", url: "pages/projetos.html" },
+        { title: "Desenvolvimento Web", desc: "HTML CSS JavaScript frontend backend", url: "pages/projetos.html" },
+        { title: "Portfolio Projetos", desc: "Trabalhos desenvolvidos curso computação", url: "pages/projetos.html" }
+    ];
+
+    function filterContent() {
+        const query = document.getElementById('site-search').value.toLowerCase();
+        const resultsDiv = document.getElementById('search-results');
+        
+        if (query.length < 2) {
+            resultsDiv.classList.remove('show');
+            return;
+        }
+        
+        const results = siteContent.filter(item => 
+            item.title.toLowerCase().includes(query) || 
+            item.desc.toLowerCase().includes(query)
+        );
+        
+        if (results.length === 0) {
+            resultsDiv.innerHTML = '<p style="color:var(--text-light);padding:1rem;">Nenhum resultado encontrado</p>';
+        } else {
+            resultsDiv.innerHTML = results.map(item => 
+                `<div class="result-item"><a href="${item.url}">${item.title}</a><p>${item.desc}</p></div>`
+            ).join('');
+        }
+        resultsDiv.classList.add('show');
+    }
+    </script>
 </body>
 </html>

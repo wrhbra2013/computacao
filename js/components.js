@@ -12,7 +12,9 @@ const navItems = [
     { href: basePath + 'pages/semestre7.html', label: '7º Semestre' },
     { href: basePath + 'pages/semestre8.html', label: '8º Semestre' },
     { href: basePath + 'pages/semestre9.html', label: '9º Semestre' },
-    { href: basePath + 'pages/semestre10.html', label: '10º Semestre' }
+    { href: basePath + 'pages/semestre10.html', label: '10º Semestre' },
+    { href: basePath + 'pages/estagio.html', label: 'Estágio' },
+    { href: basePath + 'pages/projetos.html', label: '+Projetos' }
 ];
 
 function getCurrentPage() {
