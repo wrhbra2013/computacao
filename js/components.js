@@ -1,38 +1,29 @@
 const isInPages = window.location.pathname.includes('/pages/');
 const basePath = isInPages ? '../' : '';
 
-const navItems = [
-    { href: basePath + 'index.html', label: 'Início' },
-    { href: basePath + 'pages/semestre1.html', label: '1º Semestre' },
-    { href: basePath + 'pages/semestre2.html', label: '2º Semestre' },
-    { href: basePath + 'pages/semestre3.html', label: '3º Semestre' },
-    { href: basePath + 'pages/semestre4.html', label: '4º Semestre' },
-    { href: basePath + 'pages/semestre5.html', label: '5º Semestre' },
-    { href: basePath + 'pages/semestre6.html', label: '6º Semestre' },
-    { href: basePath + 'pages/semestre7.html', label: '7º Semestre' },
-    { href: basePath + 'pages/semestre8.html', label: '8º Semestre' },
-    { href: basePath + 'pages/semestre9.html', label: '9º Semestre' },
-    { href: basePath + 'pages/semestre10.html', label: '10º Semestre' },
-    { href: basePath + 'pages/estagio.html', label: 'Estágio' },
-    { href: basePath + 'pages/projetos.html', label: '+Projetos' }
-];
-
 function getCurrentPage() {
     const path = window.location.pathname;
-    if (path.endsWith('index.html') || path === '/' || path.endsWith('/')) return basePath + 'index.html';
+    if (path.endsWith('index.html') || path === '/' || path.endsWith('/')) return 'index.html';
     return path.split('/').pop();
 }
 
 function loadComponents() {
     const currentPage = getCurrentPage();
     const navMenu = document.getElementById('nav-menu');
+    if (!navMenu) return;
     
-    if (navMenu) {
-        navMenu.innerHTML = navItems.map(item => {
-            const isActive = currentPage === item.href.split('/').pop();
-            return `<li><a href="${item.href}" ${isActive ? 'class="active"' : ''}>${item.label}</a></li>`;
-        }).join('');
-    }
+    const links = navMenu.querySelectorAll('a');
+    
+    links.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href.split('/').pop() === currentPage) {
+            link.classList.add('active');
+        }
+        
+        if (isInPages && href.startsWith('pages/')) {
+            link.setAttribute('href', '../' + href);
+        }
+    });
 }
 
 async function loadHeader() {
@@ -65,12 +56,4 @@ async function loadFooter() {
 document.addEventListener('DOMContentLoaded', () => {
     loadHeader();
     loadFooter();
-    
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menuCheckbox = document.getElementById('menu-checkbox');
-    if (menuToggle && menuCheckbox) {
-        menuToggle.addEventListener('click', () => {
-            menuCheckbox.checked = !menuCheckbox.checked;
-        });
-    }
 });
