@@ -366,11 +366,18 @@ h2.section-title {
     nav {
         justify-content: flex-start;
         overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
     }
     
     nav a {
         white-space: nowrap;
         font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .menu-toggle, .menu-checkbox {
+        display: none;
     }
     
     .dashboard-grid {
