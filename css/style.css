@@ -106,19 +106,34 @@ nav ul {
     display: flex;
     list-style: none;
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     padding: 0.5rem 1rem;
     margin: 0;
-    scrollbar-width: none;
+    background: linear-gradient(to right, var(--white) 0%, var(--white) 95%, transparent 100%);
 }
 
 nav ul::-webkit-scrollbar {
-    display: none;
+    height: 6px;
+}
+
+nav ul::-webkit-scrollbar-track {
+    background: var(--light);
+    border-radius: 3px;
+}
+
+nav ul::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
 }
 
 nav li {
     flex-shrink: 0;
+}
+
+nav li:last-child {
+    padding-right: 2rem;
 }
 
 nav a {
@@ -149,18 +164,27 @@ nav a.active {
 .menu-toggle-label {
     display: none;
     cursor: pointer;
-    padding: 0.5rem;
     position: absolute;
     right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
+    z-index: 101;
+    background: var(--primary);
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.menu-toggle-label::before {
-    content: '⋮';
-    font-size: 1.5rem;
-    color: var(--primary);
-    font-weight: bold;
+.menu-toggle-label span {
+    display: block;
+    width: 20px;
+    height: 3px;
+    background: var(--white);
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+.menu-toggle-label:hover {
+    background: var(--primary-dark);
 }
 
 /* Main Content */
@@ -385,10 +409,14 @@ footer p {
 @media (max-width: 768px) {
     .menu-toggle-label {
         display: block;
+        position: absolute;
+        right: 1rem;
+        top: 0.5rem;
     }
     
     nav {
         position: relative;
+        padding: 0.5rem 3rem 0.5rem 1rem;
     }
     
     nav ul {
@@ -404,12 +432,20 @@ footer p {
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     
-    .menu-toggle-check:checked + .menu-toggle-label + ul {
+    .menu-toggle-check:checked ~ nav ul {
         display: flex;
     }
     
-    .menu-toggle-check:checked + .menu-toggle-label::before {
-        content: '✕';
+    .menu-toggle-check:checked ~ nav .menu-toggle-label span:nth-child(1) {
+        transform: rotate(45deg) translate(4px, 4px);
+    }
+    
+    .menu-toggle-check:checked ~ nav .menu-toggle-label span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle-check:checked ~ nav .menu-toggle-label span:nth-child(3) {
+        transform: rotate(-45deg) translate(4px, -4px);
     }
     
     .dashboard-grid {
